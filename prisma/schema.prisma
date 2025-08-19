@@ -1,0 +1,130 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  directUrl    = env("DIRECT_URL")
+  relationMode = "prisma"
+}
+
+model Event {
+  id        Int         @id @default(autoincrement())
+  name      String
+  date      DateTime
+  location  String
+  capacity  Int
+  status    EventStatus @default(PLANNING)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  attendees Attendee[]
+}
+
+model Attendee {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  company      String
+  role         String
+  dietaryNeeds String?
+  eventId      Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  event        Event    @relation(fields: [eventId], references: [id])
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  email         String    @unique
+  name          String?
+  password      String
+  avatar        String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  projects      Project[] @relation("ProjectMembers")
+  assignedTasks Task[]
+  comments      Comment[]
+}
+
+model Project {
+  id          Int           @id @default(autoincrement())
+  name        String
+  description String?
+  status      ProjectStatus @default(ACTIVE)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  members     User[]        @relation("ProjectMembers")
+  tasks       Task[]
+  resources   Resource[]
+  comments    Comment[]
+}
+
+model Task {
+  id          Int        @id @default(autoincrement())
+  title       String
+  description String?
+  status      TaskStatus @default(TODO)
+  dueDate     DateTime?
+  projectId   Int
+  assigneeId  Int?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  project     Project    @relation(fields: [projectId], references: [id])
+  assignee    User?      @relation(fields: [assigneeId], references: [id])
+  comments    Comment[]
+}
+
+model Resource {
+  id          Int      @id @default(autoincrement())
+  title       String
+  url         String
+  type        String
+  description String?
+  projectId   Int
+  createdAt   DateTime @default(now())
+  project     Project  @relation(fields: [projectId], references: [id])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  authorId  Int
+  projectId Int?
+  taskId    Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  author    User     @relation(fields: [authorId], references: [id])
+  project   Project? @relation(fields: [projectId], references: [id])
+  task      Task?    @relation(fields: [taskId], references: [id])
+}
+
+model ProjectMembers {
+  A Int
+  B Int
+
+  @@id([A, B], map: "_ProjectMembers_AB_pkey")
+  @@index([B], map: "_ProjectMembers_B_index")
+  @@map("_ProjectMembers")
+}
+
+enum EventStatus {
+  UPCOMING
+  COMPLETED
+  PLANNING
+  CANCELED
+}
+
+enum ProjectStatus {
+  ACTIVE
+  COMPLETED
+  ON_HOLD
+  ARCHIVED
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  DONE
+  BLOCKED
+}
