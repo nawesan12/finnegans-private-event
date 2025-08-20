@@ -10,7 +10,7 @@ export default function Step2_Form({
   onFormError: (errorMessage: string) => void;
 }) {
   const [hasAllergy, setHasAllergy] = useState<string | null>(null);
-  const [selectedDiet, setSelectedDiet] = useState<string | null>(null);
+  const [selectedDiet, setSelectedDiet] = useState<string[]>([]);
   const [customDiet, setCustomDiet] = useState<string>("");
   const [formValues, setFormValues] = useState({
     name: "",
@@ -19,10 +19,25 @@ export default function Step2_Form({
     role: "",
   });
 
+  const handleDietChange = (diet: string) => {
+    if (hasAllergy !== "yes") {
+      setHasAllergy("yes");
+    }
+    setSelectedDiet((prev) =>
+      prev.includes(diet)
+        ? prev.filter((item) => item !== diet)
+        : [...prev, diet],
+    );
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    if (selectedDiet === "otra") formData.set("diet", customDiet.trim());
+    const diet = [...selectedDiet];
+    if (customDiet) {
+      diet.push(customDiet);
+    }
+    formData.set("diet", diet.join(", "));
     const data = Object.fromEntries(formData.entries());
     console.log(data);
     try {
@@ -150,57 +165,61 @@ export default function Step2_Form({
           </motion.div>
 
           {/* Diet Options */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {["Vegetariana", "Gluten Free", "Vegana"].map((diet) => (
-                <motion.label
-                  key={diet}
-                  className="flex items-center gap-3 cursor-pointer p-3 rounded-full bg-transparent transition-all"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+          {hasAllergy === "yes" && (
+            <motion.div variants={itemVariants} className="space-y-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {["Vegetariana", "Gluten Free", "Vegana"].map((diet) => (
+                  <motion.label
+                    key={diet}
+                    className="flex items-center gap-3 cursor-pointer p-3 rounded-full bg-transparent transition-all"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <input
+                      type="checkbox"
+                      name="diet"
+                      value={diet.toLowerCase().replace(" ", "-")}
+                      checked={selectedDiet.includes(
+                        diet.toLowerCase().replace(" ", "-"),
+                      )}
+                      onChange={() =>
+                        handleDietChange(diet.toLowerCase().replace(" ", "-"))
+                      }
+                      className="w-5 h-5 appearance-none rounded-full border border-white/50 bg-white/20 backdrop-blur-md checked:bg-[#4bc3fe] checked:border-[#4bc3fe] transition-all cursor-pointer"
+                    />
+                    <span className="text-white font-semibold select-none">
+                      {diet}
+                    </span>
+                  </motion.label>
+                ))}
+
+                {/* Opción Otra con input */}
+                <motion.div
+                  className="flex items-center gap-3 p-3 lg:w-full max-w-[40px] rounded-full bg-transparent border-white transition-all"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                 >
                   <input
-                    type="radio"
+                    type="text"
                     name="diet"
-                    value={diet.toLowerCase().replace(" ", "-")}
-                    checked={
-                      selectedDiet === diet.toLowerCase().replace(" ", "-")
-                    }
-                    onChange={() =>
-                      setSelectedDiet(diet.toLowerCase().replace(" ", "-"))
-                    }
-                    className="w-5 h-5 appearance-none rounded-full border border-white/50 bg-white/20 backdrop-blur-md checked:bg-[#4bc3fe] checked:border-[#4bc3fe] transition-all cursor-pointer"
+                    placeholder="Otra"
+                    value={customDiet}
+                    onChange={(e) => {
+                      setCustomDiet(e.target.value);
+                      if (e.target.value) {
+                        setHasAllergy("yes");
+                      }
+                    }}
+                    className={`lg:relative lg:right-4 flex-1 px-3 py-1 max-w-32 lg:max-w-none rounded-full  backdrop-blur-xs text-black placeholder-white text-lg focus:outline-none font-medium ${
+                      customDiet
+                        ? "bg-white text-black placeholder-black/50"
+                        : "bg-transparent text-white placeholder-white/70"
+                    }`}
                   />
-                  <span className="text-white font-semibold select-none">
-                    {diet}
-                  </span>
-                </motion.label>
-              ))}
-
-              {/* Opción Otra con input */}
-              <motion.div
-                className="flex items-center gap-3 p-3 lg:w-full max-w-[40px] rounded-full bg-transparent border-white transition-all"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-              >
-                <input
-                  type="text"
-                  name="diet"
-                  placeholder="Otra"
-                  value={customDiet}
-                  onChange={(e) => {
-                    setCustomDiet(e.target.value);
-                    setSelectedDiet(e.target.value ? "otra" : null);
-                  }}
-                  className={`lg:relative lg:right-4 flex-1 px-3 py-1 max-w-32 lg:max-w-none rounded-full  backdrop-blur-xs text-black placeholder-white text-lg focus:outline-none font-medium ${
-                    customDiet
-                      ? "bg-white text-black placeholder-black/50"
-                      : "bg-transparent text-white placeholder-white/70"
-                  }`}
-                />
-              </motion.div>
-            </div>
-          </motion.div>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
 
           <motion.div
             variants={itemVariants}
