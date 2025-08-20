@@ -10,7 +10,7 @@ type Step1InvitationProps = {
 export default function Step1Invitation({ onYes, onNo }: Step1InvitationProps) {
   return (
     <motion.div
-      className="flex flex-col gap-4 lg:gap-2"
+      className="flex flex-col gap-4 lg:gap-2 md:px-0 px-4"
       initial="hidden"
       animate="visible"
       variants={{
@@ -24,7 +24,7 @@ export default function Step1Invitation({ onYes, onNo }: Step1InvitationProps) {
     >
       {/* Logo */}
       <motion.div
-        className="inline-flex max-w-max items-center relative px-4 md:px-0 -left-2"
+        className="inline-flex max-w-max items-center relative px-4 md:px-0 -left-4 lg:-left-2"
         variants={{
           hidden: { opacity: 0, y: 20 },
           visible: { opacity: 1, y: 0 },
@@ -43,22 +43,22 @@ export default function Step1Invitation({ onYes, onNo }: Step1InvitationProps) {
       {/* Title */}
 
       <motion.h1
-        className="lg:text-[62px]  text-4xl leading-10 md:leading-none px-4 md:px-0  font-medium text-[#4bc3fe] lg:mb-10 text-shadow-xs text-left w-full"
+        className="lg:text-[62px]  text-4xl md:text-4xl leading-10 md:leading-none px-4 md:px-0  font-medium text-[#4bc3fe] lg:mb-10 text-shadow-xs text-left w-full relative lg:left-0 -left-4"
         variants={{
           hidden: { opacity: 0, y: 20 },
           visible: { opacity: 1, y: 0 },
         }}
       >
-        <p className="text-white font-medium text-3xl relative lg:bottom-0 bottom-3">
-          Lo que viene, <br className="lg:hidden block" /> primero con vos.
+        <p className="text-white font-medium text-xl whitespace-nowrap md:text-3xl relative lg:bottom-0 bottom-3">
+          Lo que viene, primero con vos.
         </p>{" "}
-        Pre-lanzamiento <br /> Espacio Finnegans CC{" "}
+        Pre-lanzamiento <br /> Espacio <br className="" /> Finnegans CC{" "}
         <span className="text-white">¿Venís?</span>
       </motion.h1>
 
       {/* Buttons */}
       <motion.div
-        className="flex items-center justify-around md:justify-start gap-4 md:gap-6  md:px-0 relative top-4 md:top-0"
+        className="flex items-center justify-around md:justify-start gap-2 md:gap-6  relative top-4 md:top-0"
         variants={{
           hidden: { opacity: 0, y: 20 },
           visible: { opacity: 1, y: 0 },

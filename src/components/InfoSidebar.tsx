@@ -48,7 +48,7 @@ export default function InfoSidebar({ horizontal = false }: InfoSidebarProps) {
 
   return horizontal ? (
     // Horizontal row version for Step 1 (mobile)
-    <div className="flex justify-around gap-6 mt-16 md:hidden">
+    <div className="flex center justify-center gap-6 mt-16 md:hidden">
       {items.map((item, index) => {
         const content = (
           <motion.div
