@@ -35,7 +35,7 @@ export default function Step1Invitation({ onYes, onNo }: Step1InvitationProps) {
           alt="Finnegans Logo"
           width={400}
           height={400}
-          className="rounded-full h-[80px] w-auto relative -top-3 -left-4"
+          className="rounded-full h-[80px] w-auto relative -top-3 -left-6"
           priority
         />
       </motion.div>
@@ -43,7 +43,7 @@ export default function Step1Invitation({ onYes, onNo }: Step1InvitationProps) {
       {/* Title */}
 
       <motion.h1
-        className="lg:text-[62px] whitespace-nowrap  text-4xl md:text-4xl leading-10 md:leading-none px-4 md:px-0  font-medium text-[#4bc3fe] lg:mb-10 text-shadow-xs text-left w-full relative lg:left-0 -left-2"
+        className="lg:text-[62px] whitespace-nowrap  text-4xl md:text-4xl leading-10 md:leading-none px-4 md:px-0  font-medium text-[#4bc3fe] lg:mb-10 text-shadow-xs text-left w-full relative lg:left-0 -left-4"
         variants={{
           hidden: { opacity: 0, y: 20 },
           visible: { opacity: 1, y: 0 },
@@ -54,17 +54,7 @@ export default function Step1Invitation({ onYes, onNo }: Step1InvitationProps) {
         </p>{" "}
         Pre-lanzamiento <br /> Espacio <br className="md:hidden block" />{" "}
         Finnegans CC <br className="md:hidden block" />
-        <span className="text-white relative">
-          ¿Venís?{" "}
-          <Image
-            src="/linea.png"
-            alt="Finnegans Logo"
-            width={400}
-            height={400}
-            className="w-10/12 left-3 lg:left-6 absolute -bottom-3"
-            priority
-          />
-        </span>
+        <span className="text-white">¿Venís? </span>
       </motion.h1>
 
       {/* Buttons */}
