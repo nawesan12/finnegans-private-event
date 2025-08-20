@@ -83,7 +83,7 @@ export default function Step3_ThankYou() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.6 }}
-        className="flex justify-between items-center w-full gap-2 px-6 lg:px-0"
+        className="flex justify-between items-center w-full gap-2 lg:px-0"
       >
         {/* LEFT */}
         <div
@@ -96,12 +96,12 @@ export default function Step3_ThankYou() {
             alt="Finnegans Logo"
             width={400}
             height={200}
-            className="aspect-auto h-12 mx-0 px-0 max-w-max lg:hidden"
+            className="h-12 mx-0 px-0 max-w-max  lg:hidden"
           />
           <div
             className={`absolute inset-0 flex items-center justify-center
                         backdrop-blur-md bg-white/20 rounded-full border-2 border-white
-                        text-white font-semibold lg:text-xl px-4 py-1
+                        text-white font-semibold lg:text-xl  py-1
                         opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none
                         lg:hidden  ${showOverlay ? "opacity-100" : "opacity-0"} lg:hidden`}
           >
@@ -119,7 +119,7 @@ export default function Step3_ThankYou() {
         </div>
 
         {/* RIGHT (Desktop only) */}
-        <div className="hidden lg:relative lg:flex lg:items-center lg:justify-center group">
+        <div className="hidden lg:relative lg:left-14 lg:flex lg:items-center lg:justify-end group">
           <Image
             src="/finnegans-2.svg"
             alt="Finnegans Logo"
@@ -130,7 +130,7 @@ export default function Step3_ThankYou() {
           <div
             className="absolute inset-0 flex items-center justify-center
                         backdrop-blur-md bg-white/20 rounded-full border-2 border-white
-                        text-white font-semibold text-xl px-4 py-1
+                        text-white font-semibold text-xl  py-1
                         opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
           >
             Sin spoilers!

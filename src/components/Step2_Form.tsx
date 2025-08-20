@@ -200,7 +200,7 @@ export default function Step2_Form({ onSubmit }: { onSubmit: () => void }) {
                       setCustomDiet(e.target.value);
                       if (e.target.value) setHasAllergy("yes");
                     }}
-                    className={`flex-1 px-3 py-1 rounded-full text-lg font-medium focus:outline-none max-w-max ${
+                    className={`flex-1 max-w-full px-3 py-1 rounded-full text-lg font-medium focus:outline-none ${
                       customDiet
                         ? "bg-white px-0 text-black placeholder-black/50"
                         : "bg-transparent text-white placeholder-white/70"
