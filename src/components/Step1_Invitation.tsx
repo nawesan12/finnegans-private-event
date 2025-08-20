@@ -54,7 +54,17 @@ export default function Step1Invitation({ onYes, onNo }: Step1InvitationProps) {
         </p>{" "}
         Pre-lanzamiento <br /> Espacio <br className="md:hidden block" />{" "}
         Finnegans CC <br className="md:hidden block" />
-        <span className="text-white">¿Venís?</span>
+        <span className="text-white relative">
+          ¿Venís?{" "}
+          <Image
+            src="/linea.png"
+            alt="Finnegans Logo"
+            width={400}
+            height={400}
+            className="w-10/12 left-3 lg:left-6 absolute -bottom-3"
+            priority
+          />
+        </span>
       </motion.h1>
 
       {/* Buttons */}
