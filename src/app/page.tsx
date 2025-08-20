@@ -25,6 +25,10 @@ export default function Home() {
     setMessage({ text: "Qué lástima. ¡Te extrañaremos! 😢", show: true });
   };
 
+  const handleFormError = (errorMessage: string) => {
+    setMessage({ text: errorMessage, show: true });
+  };
+
   const renderStep = () => {
     switch (currentStep) {
       case 1:
@@ -35,7 +39,12 @@ export default function Home() {
           />
         );
       case 2:
-        return <Step2_Form onSubmit={() => setCurrentStep(3)} />;
+        return (
+          <Step2_Form
+            onSubmit={() => setCurrentStep(3)}
+            onFormError={handleFormError}
+          />
+        );
       case 3:
         return <Step3_ThankYou />;
       default:

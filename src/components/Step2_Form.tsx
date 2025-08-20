@@ -2,7 +2,13 @@
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 
-export default function Step2_Form({ onSubmit }: { onSubmit: () => void }) {
+export default function Step2_Form({
+  onSubmit,
+  onFormError,
+}: {
+  onSubmit: () => void;
+  onFormError: (errorMessage: string) => void;
+}) {
   const [hasAllergy, setHasAllergy] = useState<string | null>(null);
   const [selectedDiet, setSelectedDiet] = useState<string | null>(null);
   const [customDiet, setCustomDiet] = useState<string>("");
@@ -28,9 +34,15 @@ export default function Step2_Form({ onSubmit }: { onSubmit: () => void }) {
       if (response.ok) {
         console.log("Form submitted successfully!");
         onSubmit();
-      } else console.error("Form submission failed.", response);
+      } else {
+        const errorData = await response.json();
+        onFormError(
+          errorData.message || "Ocurrió un error al enviar el formulario.",
+        );
+      }
     } catch (error) {
       console.error("An error occurred:", error);
+      onFormError("Ocurrió un error de red. Por favor, inténtalo de nuevo.");
     }
   };
 
