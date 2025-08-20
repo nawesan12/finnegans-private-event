@@ -55,7 +55,7 @@ export default function Step3_ThankYou() {
                 visible: { opacity: 1, y: 0 },
               }}
               transition={{ duration: 0.5 }}
-              className="relative overflow-hidden px-6"
+              className="relative overflow-hidden px-6 lg:px-0"
             >
               <Image
                 src={item.src}
