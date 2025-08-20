@@ -12,12 +12,13 @@ export default function Step2_Form({ onSubmit }: { onSubmit: () => void }) {
     company: "",
     role: "",
   });
+  const [loading, setLoading] = useState(false); // NEW
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true); // NEW
     const formData = new FormData(e.currentTarget);
 
-    // Concatenar dietas seleccionadas + custom
     const dietString = [...selectedDiets];
     if (customDiet.trim()) dietString.push(customDiet.trim());
     if (dietString.length > 0) formData.set("diet", dietString.join("-"));
@@ -37,6 +38,8 @@ export default function Step2_Form({ onSubmit }: { onSubmit: () => void }) {
       } else console.error("Form submission failed.", response);
     } catch (error) {
       console.error("An error occurred:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -185,7 +188,7 @@ export default function Step2_Form({ onSubmit }: { onSubmit: () => void }) {
 
                 {/* Opción Otra con input */}
                 <motion.div
-                  className="flex items-center gap-3 px-3 py-px rounded-full border-white transition-all bg-white/40 backdrop-blur-md"
+                  className="flex items-center max-w-max gap-3  py-px rounded-full border-white transition-all bg-white/40 backdrop-blur-md"
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.97 }}
                 >
@@ -197,9 +200,9 @@ export default function Step2_Form({ onSubmit }: { onSubmit: () => void }) {
                       setCustomDiet(e.target.value);
                       if (e.target.value) setHasAllergy("yes");
                     }}
-                    className={`flex-1 px-3 py-1 rounded-full text-lg font-medium focus:outline-none ${
+                    className={`flex-1 px-3 py-1 rounded-full text-lg font-medium focus:outline-none max-w-max ${
                       customDiet
-                        ? "bg-white text-black placeholder-black/50"
+                        ? "bg-white px-0 text-black placeholder-black/50"
                         : "bg-transparent text-white placeholder-white/70"
                     }`}
                   />
@@ -210,13 +213,39 @@ export default function Step2_Form({ onSubmit }: { onSubmit: () => void }) {
 
           {/* Submit */}
           <motion.div
-            variants={itemVariants}
+            variants={{
+              hidden: { opacity: 0, y: 10 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+            }}
             className="flex justify-end pt-8 absolute -bottom-6 right-10"
           >
             <button
               type="submit"
-              className="py-2 px-6 border-2 border-white/30 rounded-full text-xl font-semibold bg-[#4bc3fe] text-white hover:bg-cyan-500 transition-colors"
+              disabled={loading} // NEW
+              className="py-2 px-6 border-2 border-white/30 rounded-full text-xl font-semibold bg-[#4bc3fe] text-white hover:bg-cyan-500 transition-colors flex items-center gap-2"
             >
+              {loading && (
+                <svg
+                  className="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                  ></path>
+                </svg>
+              )}
               Enviar
             </button>
           </motion.div>

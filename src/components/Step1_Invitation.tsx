@@ -43,7 +43,7 @@ export default function Step1Invitation({ onYes, onNo }: Step1InvitationProps) {
       {/* Title */}
 
       <motion.h1
-        className="lg:text-[62px]  text-4xl md:text-4xl leading-10 md:leading-none px-4 md:px-0  font-medium text-[#4bc3fe] lg:mb-10 text-shadow-xs text-left w-full relative lg:left-0 -left-4"
+        className="lg:text-[62px] whitespace-nowrap  text-4xl md:text-4xl leading-10 md:leading-none px-4 md:px-0  font-medium text-[#4bc3fe] lg:mb-10 text-shadow-xs text-left w-full relative lg:left-0 -left-2"
         variants={{
           hidden: { opacity: 0, y: 20 },
           visible: { opacity: 1, y: 0 },
@@ -52,7 +52,8 @@ export default function Step1Invitation({ onYes, onNo }: Step1InvitationProps) {
         <p className="text-white font-medium text-xl whitespace-nowrap md:text-3xl relative lg:bottom-0 bottom-3">
           Lo que viene, primero con vos.
         </p>{" "}
-        Pre-lanzamiento <br /> Espacio <br className="" /> Finnegans CC{" "}
+        Pre-lanzamiento <br /> Espacio <br className="md:hidden block" />{" "}
+        Finnegans CC <br className="md:hidden block" />
         <span className="text-white">¿Venís?</span>
       </motion.h1>
 
