@@ -8,7 +8,7 @@ type InfoSidebarProps = {
 
 export default function InfoSidebar({ horizontal = false }: InfoSidebarProps) {
   const items = [
-    { icon: "/boton-lateral-1.png", label: "25 de Septiembre" },
+    { icon: "/boton-lateral-1.png", label: "4 de Septiembre" },
     { icon: "/boton-lateral-2.png", label: "18:30hs" },
     {
       icon: "/boton-lateral-3.png",
