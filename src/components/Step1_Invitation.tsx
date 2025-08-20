@@ -58,7 +58,7 @@ export default function Step1Invitation({ onYes, onNo }: Step1InvitationProps) {
 
       {/* Buttons */}
       <motion.div
-        className="flex items-center justify-center md:justify-start gap-6 px-6 md:px-0 relative top-4 md:top-0"
+        className="flex items-center justify-around md:justify-start gap-4 md:gap-6  md:px-0 relative top-4 md:top-0"
         variants={{
           hidden: { opacity: 0, y: 20 },
           visible: { opacity: 1, y: 0 },
@@ -68,7 +68,7 @@ export default function Step1Invitation({ onYes, onNo }: Step1InvitationProps) {
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.95 }}
           onClick={onYes}
-          className="border-[#4bc3fe]/60 whitespace-nowrap border-2 border-t-0 border-b-0 cursor-pointer font-medium text-xl md:text-4xl py-3 px-6 rounded-full bg-[#4bc3fe]/40 backdrop-blur-md text-white shadow-lg"
+          className="border-[#4bc3fe]/60 whitespace-nowrap border-2 border-t-0 border-b-0 cursor-pointer font-medium text-lg md:text-4xl py-3 px-6 rounded-full bg-[#4bc3fe]/40 backdrop-blur-md text-white shadow-lg"
         >
           Obvio que si!
         </motion.button>
@@ -76,7 +76,7 @@ export default function Step1Invitation({ onYes, onNo }: Step1InvitationProps) {
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.95 }}
           onClick={onNo}
-          className="border-[#4bc3fe]/60 whitespace-nowrap border-2 border-t-0 border-b-0 cursor-pointer font-medium text-xl md:text-4xl py-3 px-6 rounded-full bg-[#4bc3fe]/40 backdrop-blur-md text-white shadow-lg"
+          className="border-[#4bc3fe]/60 whitespace-nowrap border-2 border-t-0 border-b-0 cursor-pointer font-medium text-lg md:text-4xl py-3 px-6 rounded-full bg-[#4bc3fe]/40 backdrop-blur-md text-white shadow-lg"
         >
           No puedo :(
         </motion.button>
