@@ -9,13 +9,13 @@ export default function Step3_ThankYou() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -30 }}
       transition={{ duration: 0.6 }}
-      className="space-y-8"
+      className="space-y-4 py-8"
     >
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.6 }}
-        className="lg:text-[80px] text-left px-6 lg:px-0 text-4xl md:text-6xl font-semibold text-white mb-14 w-full leading-10 md:leading-12"
+        className="lg:text-[80px] text-left relative md:top-0 top-6 px-6 lg:px-0 text-4xl md:text-6xl font-semibold text-white mb-14 w-full leading-10 md:leading-12"
       >
         <span className="text-8xl md:text-[137px] font-medium font-bright-clones relative top-4 md:top-3 text-[#4bc3fe]">
           Listo!
@@ -83,7 +83,7 @@ export default function Step3_ThankYou() {
         className="flex justify-center lg:justify-between items-center w-full gap-2 px-6 lg:px-0"
       >
         {/* Left logo (always visible) */}
-        <div className="hidden lg:block">
+        <div className="hidden md:block">
           <Image
             src="/finnegans.svg"
             alt="Finnegans Logo"
@@ -94,7 +94,7 @@ export default function Step3_ThankYou() {
         </div>
 
         {/* Centered logos in mobile */}
-        <div className="flex lg:hidden items-center gap-4">
+        <div className="flex md:hidden items-center gap-4">
           <Image
             src="/finnegans.svg"
             alt="Finnegans Logo"
