@@ -12,13 +12,13 @@ export default function Step3_ThankYou() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -30 }}
       transition={{ duration: 0.6 }}
-      className="space-y-2 py-8 px-6"
+      className="space-y-2 py-8 px-4"
     >
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.6 }}
-        className="lg:text-[80px]  text-left relative md:top-0 top-10 px-6 lg:px-0 text-4xl md:text-6xl font-semibold text-white mb-14 w-full leading-10 md:leading-12"
+        className="lg:text-[84px]  text-left relative md:top-0 top-10 px-6 lg:px-0 text-4xl md:text-6xl font-semibold text-white mb-14 w-full leading-10 md:leading-12"
       >
         <span className="text-8xl md:text-[137px] font-medium font-bright-clones relative top-4 md:top-3 text-[#4bc3fe]">
           Listo!
