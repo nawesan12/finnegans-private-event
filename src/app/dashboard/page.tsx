@@ -31,7 +31,7 @@ export default function App() {
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
     const MOCK_USER = "finnegansadmin";
-    const MOCK_PASS = "XLR8FN";
+    const MOCK_PASS = "Admin@Eventos!";
 
     if (username === MOCK_USER && password === MOCK_PASS) {
       setIsAuthenticated(true);
