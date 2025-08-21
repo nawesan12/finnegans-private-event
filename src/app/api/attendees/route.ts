@@ -66,6 +66,7 @@ export async function POST(request: NextRequest) {
       { message: "Registration successful!", data: newAttendee },
       { status: 201 },
     );
+    //eslint-disable-next-line
   } catch (error: any) {
     console.error("POST Attendee API Error:", error);
 
