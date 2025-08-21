@@ -58,14 +58,14 @@ export default function Step3_ThankYou() {
                 visible: { opacity: 1, y: 0 },
               }}
               transition={{ duration: 0.5 }}
-              className="relative overflow-hidden px-6 lg:px-0"
+              className="relative px-6 lg:px-0"
             >
               <Image
                 src={item.src}
                 alt={item.alt}
                 width={400}
                 height={400}
-                className="object-contain rounded-3xl w-full"
+                className="object-contain w-full"
               />
             </motion.div>
           );
@@ -101,7 +101,7 @@ export default function Step3_ThankYou() {
         </div>
 
         {/* RIGHT (Desktop only) */}
-        <div className="relative -left-15 -top-6 lg:top-0 lg:left-20 lg:flex lg:items-center lg:justify-end group">
+        <div className="relative -left-4 -top-6 lg:top-0 lg:left-20 lg:flex lg:items-center lg:justify-end group">
           <Image
             src="/finnegans-2.png"
             alt="Finnegans Logo"
