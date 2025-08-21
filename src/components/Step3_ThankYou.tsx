@@ -35,7 +35,7 @@ export default function Step3_ThankYou() {
           hidden: {},
           visible: { transition: { staggerChildren: 0.2 } },
         }}
-        className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12 md:mb-8 w-10/12 lg:w-full "
+        className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12 md:mb-8 w-11/12 lg:w-full "
       >
         {[
           {
