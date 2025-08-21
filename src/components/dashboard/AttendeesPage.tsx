@@ -8,12 +8,14 @@ interface AttendeesPageProps {
   events: Event[];
   attendees: Attendee[];
   isLoading: boolean;
+  onDelete: (attendeeId: number) => void;
 }
 
 export const AttendeesPage = ({
   events,
   attendees,
   isLoading,
+  onDelete,
 }: AttendeesPageProps) => {
   const [selectedEventId, setSelectedEventId] = useState<string>("all");
   const [searchTerm, setSearchTerm] = useState("");
@@ -90,6 +92,9 @@ export const AttendeesPage = ({
                 <th scope="col" className="px-6 py-3">
                   Dieta Especial
                 </th>
+                <th scope="col" className="px-6 py-3">
+                  Acciones
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -101,6 +106,9 @@ export const AttendeesPage = ({
                     </td>
                     <td className="px-6 py-4">
                       <div className="h-4 bg-white/10 rounded w-1/2 animate-pulse"></div>
+                    </td>
+                    <td className="px-6 py-4">
+                      <div className="h-4 bg-white/10 rounded w-1/4 animate-pulse"></div>
                     </td>
                     <td className="px-6 py-4">
                       <div className="h-4 bg-white/10 rounded w-1/4 animate-pulse"></div>
@@ -149,6 +157,25 @@ export const AttendeesPage = ({
                       ) : (
                         <span className="text-white/50">-</span>
                       )}
+                    </td>
+                    <td className="px-6 py-4">
+                      <button
+                        onClick={() => onDelete(attendee.id)}
+                        className="text-red-500 hover:text-red-700"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm4 0a1 1 0 012 0v6a1 1 0 11-2 0V8z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      </button>
                     </td>
                   </tr>
                 ))}

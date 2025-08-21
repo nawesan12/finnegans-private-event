@@ -114,6 +114,22 @@ export default function App() {
     }
   };
 
+  const handleDeleteAttendee = async (attendeeId: number) => {
+    if (
+      window.confirm("¿Estás seguro de que quieres eliminar este asistente?")
+    ) {
+      try {
+        const response = await fetch(`/api/attendees?id=${attendeeId}`, {
+          method: "DELETE",
+        });
+        if (!response.ok) throw new Error("No se pudo eliminar el asistente");
+        await fetchData();
+      } catch (err) {
+        setError(err instanceof Error ? err.message : "Error al eliminar");
+      }
+    }
+  };
+
   const handleViewEventDetails = (eventId: number) => {
     setViewingEventId(eventId);
   };
@@ -165,6 +181,7 @@ export default function App() {
             events={events}
             attendees={attendees}
             isLoading={isLoading}
+            onDelete={handleDeleteAttendee}
           />
         );
       default:

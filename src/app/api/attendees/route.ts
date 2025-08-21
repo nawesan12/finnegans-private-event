@@ -30,6 +30,49 @@ export async function GET() {
 }
 
 /**
+ * Handles the DELETE request to remove an attendee.
+ * @param {NextRequest} request The incoming request object.
+ * @returns {NextResponse} A JSON response indicating success or failure.
+ */
+export async function DELETE(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json(
+        { message: "Attendee ID is required." },
+        { status: 400 },
+      );
+    }
+
+    const attendeeId = parseInt(id, 10);
+
+    if (isNaN(attendeeId)) {
+      return NextResponse.json(
+        { message: "Invalid Attendee ID." },
+        { status: 400 },
+      );
+    }
+
+    await db.attendee.delete({
+      where: { id: attendeeId },
+    });
+
+    return NextResponse.json(
+      { message: "Attendee deleted successfully." },
+      { status: 200 },
+    );
+  } catch (error) {
+    console.error("DELETE Attendee API Error:", error);
+    return NextResponse.json(
+      { message: "An internal server error occurred." },
+      { status: 500 },
+    );
+  }
+}
+
+/**
  * Handles the POST request for event registration.
  * This function receives attendee data from the registration form,
  * validates it, and saves it to the in-memory store.
