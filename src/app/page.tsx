@@ -69,7 +69,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="relative w-full h-screen md:grid md:grid-cols-[auto_1fr_auto] md:gap-8 lg:gap-12 px-4 sm:px-8 lg:max-w-7xl mx-auto items-stretch overflow-x-hidden">
+      <div className="relative w-full flex flex-col justify-center min-h-svh md:grid md:grid-cols-[auto_1fr_auto] md:gap-8 lg:gap-12 px-4 sm:px-8 lg:max-w-7xl mx-auto items-stretch overflow-x-hidden">
         <ProgressIndicator currentStep={currentStep} />
 
         {/* Main Content Area */}
