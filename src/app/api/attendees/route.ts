@@ -66,8 +66,17 @@ export async function POST(request: NextRequest) {
       { message: "Registration successful!", data: newAttendee },
       { status: 201 },
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error("POST Attendee API Error:", error);
+
+    // Handle unique constraint violation for email
+    if (error.code === "P2002" && error.meta?.target?.includes("email")) {
+      return NextResponse.json(
+        { message: "El correo electrónico ya está registrado." },
+        { status: 409 },
+      );
+    }
+
     return NextResponse.json(
       { message: "An internal server error occurred." },
       { status: 500 },

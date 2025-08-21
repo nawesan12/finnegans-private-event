@@ -10,6 +10,7 @@ import Step3_ThankYou from "@/components/Step3_ThankYou";
 export default function Home() {
   const [currentStep, setCurrentStep] = useState(1);
   const [message, setMessage] = useState({ text: "", show: false });
+  const [error, setError] = useState({ text: "", show: false });
 
   // Handle message display and timeout
   useEffect(() => {
@@ -21,8 +22,21 @@ export default function Home() {
     }
   }, [message]);
 
+  useEffect(() => {
+    if (error.show) {
+      const timer = setTimeout(() => {
+        setError({ text: "", show: false });
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
   const handleNoClick = () => {
     setMessage({ text: "Qué lástima. ¡Te extrañaremos! 😢", show: true });
+  };
+
+  const handleRegistrationError = (errorMessage: string) => {
+    setError({ text: errorMessage, show: true });
   };
 
   const renderStep = () => {
@@ -35,7 +49,12 @@ export default function Home() {
           />
         );
       case 2:
-        return <Step2_Form onSubmit={() => setCurrentStep(3)} />;
+        return (
+          <Step2_Form
+            onSubmit={() => setCurrentStep(3)}
+            onRegistrationError={handleRegistrationError}
+          />
+        );
       case 3:
         return <Step3_ThankYou />;
       default:
@@ -74,6 +93,15 @@ export default function Home() {
         }`}
       >
         {message.text}
+      </div>
+
+      {/* Error Toast */}
+      <div
+        className={`fixed top-8 left-1/2 -translate-x-1/2 py-3 px-6 rounded-xl bg-red-500 text-white text-base shadow-lg z-50 transition-all duration-300 pointer-events-none ${
+          error.show ? "opacity-100 visible top-28" : "opacity-0 invisible"
+        }`}
+      >
+        {error.text}
       </div>
     </>
   );
