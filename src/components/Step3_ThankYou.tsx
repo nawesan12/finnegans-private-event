@@ -12,13 +12,13 @@ export default function Step3_ThankYou() {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -30 }}
       transition={{ duration: 0.6 }}
-      className="space-y-4 py-8"
+      className="space-y-2 py-8 px-6"
     >
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.6 }}
-        className="lg:text-[80px] text-left relative md:top-0 top-10 px-6 lg:px-0 text-4xl md:text-6xl font-semibold text-white mb-14 w-full leading-10 md:leading-12"
+        className="lg:text-[80px]  text-left relative md:top-0 top-10 px-6 lg:px-0 text-4xl md:text-6xl font-semibold text-white mb-14 w-full leading-10 md:leading-12"
       >
         <span className="text-8xl md:text-[137px] font-medium font-bright-clones relative top-4 md:top-3 text-[#4bc3fe]">
           Listo!
@@ -35,7 +35,7 @@ export default function Step3_ThankYou() {
           hidden: {},
           visible: { transition: { staggerChildren: 0.2 } },
         }}
-        className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12 md:mb-8 w-full"
+        className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-12 md:mb-8 w-9/12 lg:w-full "
       >
         {[
           {
@@ -83,31 +83,13 @@ export default function Step3_ThankYou() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.6 }}
-        className="flex justify-between items-center w-full gap-2 lg:px-0"
+        className="flex lg:justify-between items-center w-full gap-2 px-0 justify-start"
       >
         {/* LEFT */}
         <div
           className="relative group"
           onClick={() => setShowOverlay(!showOverlay)}
         >
-          {/* Mobile: finnegans-2 with censor */}
-          <Image
-            src="/finnegans-2.svg"
-            alt="Finnegans Logo"
-            width={400}
-            height={200}
-            className="h-12 mx-0 px-0 max-w-max  lg:hidden"
-          />
-          <div
-            className={`absolute inset-0 flex items-center justify-center
-                        backdrop-blur-md bg-white/20 rounded-full border-2 border-white
-                        text-white font-semibold lg:text-xl  py-1
-                        opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none
-                        lg:hidden  ${showOverlay ? "opacity-100" : "opacity-0"} lg:hidden`}
-          >
-            Sin spoilers!
-          </div>
-
           {/* Desktop: finnegans normal */}
           <Image
             src="/finnegans.svg"
@@ -119,21 +101,25 @@ export default function Step3_ThankYou() {
         </div>
 
         {/* RIGHT (Desktop only) */}
-        <div className="hidden lg:relative lg:left-14 lg:flex lg:items-center lg:justify-end group">
+        <div className="relative -left-15 -top-6 lg:top-0 lg:left-20 lg:flex lg:items-center lg:justify-end group">
           <Image
-            src="/finnegans-2.svg"
+            src="/finnegans-2.png"
             alt="Finnegans Logo"
             width={400}
             height={200}
-            className="aspect-auto h-16 mx-0 px-0 max-w-max"
+            className="object-contain max-h-14 mx-0 px-0"
           />
           <div
             className="absolute inset-0 flex items-center justify-center
-                        backdrop-blur-md bg-white/20 rounded-full border-2 border-white
-                        text-white font-semibold text-xl  py-1
-                        opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none"
+                       pointer-events-none opacity-0 group-hover:opacity-100
+                       transition-opacity duration-200"
           >
-            Sin spoilers!
+            <span
+              className="backdrop-blur-md text-center bg-white/20 rounded-full w-8/12 border-2 border-white
+                             text-white font-semibold text-xl px-0 py-1"
+            >
+              Sin spoilers!
+            </span>
           </div>
         </div>
       </motion.div>
