@@ -2,7 +2,13 @@
 import { FormEvent, useState } from "react";
 import { motion } from "framer-motion";
 
-export default function Step2_Form({ onSubmit }: { onSubmit: () => void }) {
+export default function Step2_Form({
+  onSubmit,
+  onRegistrationError,
+}: {
+  onSubmit: () => void;
+  onRegistrationError: (message: string) => void;
+}) {
   const [hasAllergy, setHasAllergy] = useState<string | null>(null);
   const [selectedDiets, setSelectedDiets] = useState<string[]>([]);
   const [customDiet, setCustomDiet] = useState<string>("");
@@ -35,7 +41,12 @@ export default function Step2_Form({ onSubmit }: { onSubmit: () => void }) {
       if (response.ok) {
         console.log("Form submitted successfully!");
         onSubmit();
-      } else console.error("Form submission failed.", response);
+      } else if (response.status === 409) {
+        const errorData = await response.json();
+        onRegistrationError(errorData.message);
+      } else {
+        console.error("Form submission failed.", response);
+      }
     } catch (error) {
       console.error("An error occurred:", error);
     } finally {
