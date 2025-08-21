@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${poppins.variable} ${brightClones.variable} font-sans bg-[#04102d] lg:overflow-hidden h-screen relative`}
+        className={`${poppins.variable} ${brightClones.variable} font-sans bg-[#04102d] lg:overflow-hidden min-h-screen relative`}
       >
         {children}
       </body>
